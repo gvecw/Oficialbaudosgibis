@@ -2,6 +2,24 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
+  <!-- UTMIFY PIXEL -->
+  <script>
+    window.pixelId = "6a272c9a69caba9a8511ea72";
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+  <!-- UTMIFY UTM TRACKER -->
+  <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-xcod-sck
+    data-utmify-prevent-subids
+    async
+    defer
+  ></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Baú dos Gibis - 12.000+ Edições Digitais</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -796,22 +814,22 @@
       <h2 class="bangers" style="font-size: 3rem; color: var(--primary);">O QUE DIZEM NOSSOS COLECIONADORES</h2>
       <div class="testi-grid">
         <div class="testi-card">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marcos" class="testi-avatar">
+          <img src="mulherfoto.jpeg" alt="Mariana" class="testi-avatar">
           <div class="testi-stars">★★★★★</div>
           <div class="testi-text">"Gente, que nostalgia maravilhosa! Comprei pra ler no tablet e a qualidade dos PDFs é incrível. Meus filhos estão amando ler as mesmas histórias que eu lia na idade deles."</div>
-          <div class="testi-author">- Marcos Paulo, 38 anos</div>
+          <div class="testi-author">- Mariana Costa, 38 anos</div>
         </div>
         <div class="testi-card">
-          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Juliana" class="testi-avatar">
+          <img src="segundamulher.jpeg" alt="Juliana" class="testi-avatar">
           <div class="testi-stars">★★★★★</div>
           <div class="testi-text">"Vale cada centavo dos 12,90. Chegou no meu e-mail na mesma hora. Já baixei uns 200 gibis da década de 80 e 90 que eu tinha perdido. Sensacional!"</div>
           <div class="testi-author">- Juliana Mendes, 41 anos</div>
         </div>
         <div class="testi-card">
-          <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Roberto" class="testi-avatar">
+          <img src="homemfoto.jpeg" alt="Roberto" class="testi-avatar">
           <div class="testi-stars">★★★★★</div>
           <div class="testi-text">"Estava com medo de ser golpe, mas chegou direitinho pelo WhatsApp. Organizado por pastas, muito fácil de achar os gibis antigos do Cascão que eu adorava."</div>
-          <div class="testi-author">- Roberto Silva, 35 anos</div>
+          <div class="testi-author">- Roberto Silva, 27 anos</div>
         </div>
       </div>
     </div>
@@ -842,7 +860,7 @@
             </div>
           </div>
 
-          <button onclick="openUpsell()" class="cta-btn bangers" style="font-size: 1.5rem; padding: 15px 10px; width: 100%; box-sizing: border-box; font-family: 'Bangers', cursive;">⚡ QUERO ESSE!</button>
+          <button onclick="openUpsell()" class="cta-btn bangers" style="font-size: 1.5rem; padding: 15px 10px; width: 100%; box-sizing: border-box; font-family: 'Bangers', cursive; border: 2px solid #FFF;">⚡ QUERO ESSE!</button>
           
           <div class="purchase-footer">
             <div>🔒 Compra segura</div>
@@ -924,8 +942,11 @@
 
   <!-- UPSELL MODAL -->
   <div id="upsellModal" class="upsell-overlay">
-    <div class="upsell-modal">
-      <h2 class="upsell-title bangers">ESPERE! OFERTA EXCLUSIVA!</h2>
+    <div class="upsell-modal" style="position: relative;">
+      <div onclick="closeUpsell()" style="position: absolute; top: 15px; left: 15px; cursor: pointer; color: #A0AEC0; font-size: 0.95rem; display: flex; align-items: center; gap: 5px;">
+        <span style="font-size: 1.2rem;">←</span> Voltar
+      </div>
+      <h2 class="upsell-title bangers" style="margin-top: 10px;">ESPERE! OFERTA EXCLUSIVA!</h2>
       <p class="upsell-desc">Leve o <strong>BAÚ COMPLETO</strong> com todos os bônus por uma pechincha!</p>
       
       <div class="purchase-benefits" style="margin: 20px 0;">
@@ -944,7 +965,7 @@
       <div class="upsell-price bangers">POR R$ 19,90</div>
       
       <a href="https://tilimcheckout.com/checkout?p=775df6513ff7137bab30e00b2914d7df" class="upsell-btn-yes bangers">⚡ RESGATAR PROMOÇÃO</a>
-      <button onclick="closeUpsell()" class="upsell-btn-no">Não, quero o de 12,90</button>
+      <a href="https://tilimcheckout.com/checkout?p=4cb9edc7258c94dd9f9b9ac24fd7e702" class="upsell-btn-no" style="display: block; text-decoration: none; text-align: center;">Não, quero o de 12,90</a>
     </div>
   </div>
 
@@ -981,12 +1002,13 @@
     };
 
     // Upsell Modal Logic
-    function openUpsell() {
+    function openUpsell(e) {
+        if (e) e.preventDefault();
         document.getElementById('upsellModal').style.display = 'flex';
     }
+
     function closeUpsell() {
         document.getElementById('upsellModal').style.display = 'none';
-        window.location.href = "https://tilimcheckout.com/checkout?p=4cb9edc7258c94dd9f9b9ac24fd7e702";
     }
 
     // O carrossel agora é animado 100% via CSS para máxima fluidez (60fps)
@@ -1006,6 +1028,27 @@
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
         setTimeout(() => window.scrollTo(0, 0), 10);
     }
+
+    // DISPARO DE EVENTOS UTMIFY (ViewContent e InitiateCheckout)
+    let viewContentFired = false;
+    window.addEventListener('scroll', function() {
+        if (!viewContentFired && window.scrollY > 150) { 
+            try {
+                if (typeof utmify !== 'undefined') utmify.track("ViewContent");
+            } catch(e) {}
+            viewContentFired = true;
+        }
+    });
+
+    function fireInitiateCheckout() {
+        try {
+            if (typeof utmify !== 'undefined') utmify.track("InitiateCheckout");
+        } catch(e) {}
+    }
+
+    document.querySelectorAll('a[href*="tilimcheckout.com"]').forEach(btn => {
+        btn.addEventListener('click', fireInitiateCheckout);
+    });
   </script>
 </body>
 </html>
