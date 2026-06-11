@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baú dos Gibis - 12.000+ Edições Digitais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* GLOBAL */
+    :root {
+        --primary: #FFD600;
+        --secondary: #D90012;
+        --dark: #06091C;
+        --blue: #132060;
+        --green: #00B341;
+        --text: #E2E8F0;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+        margin: 0;
+        font-family: 'Nunito', sans-serif;
+        background-color: var(--dark);
+        color: white;
+        overflow-x: hidden;
+    }
+    * { box-sizing: border-box; }
+    
+    .bangers { font-family: 'Bangers', cursive; letter-spacing: 2px; }
+    .text-center { text-align: center; }
+    .highlight { color: var(--primary); }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+    /* TICKER & TIMER */
+    #top-timer-bar {
+        background-color: var(--secondary);
+        color: white;
+        padding: 12px;
+        font-weight: 900;
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .ticker-wrap {
+        background: var(--primary);
+        color: var(--dark);
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 10px 0;
+        font-weight: 900;
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+    .ticker-move { display: inline-block; animation: ticker 25s linear infinite; }
+    @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
+    .ticker-item { padding: 0 2rem; }
+
+    /* HERO SECTION */
+    .hero-section {
+        background: radial-gradient(circle at top center, var(--blue) 0%, var(--dark) 100%);
+        padding: 20px 20px;
+        text-align: center;
+    }
+    .footer-logo {
+        display: block;
+        max-width: 150px;
+        margin: 0 auto 20px auto;
+        filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+    }
+    .hero-headline {
+        font-size: 4rem;
+        line-height: 1.1;
+        margin-bottom: 14px;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+        margin-top: 0;
+    }
+    .hero-subheadline {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 19px;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* VSL PLACEHOLDER */
+    .vsl-placeholder {
+        width: 100%;
+        max-width: 800px;
+        aspect-ratio: 16 / 9;
+        background: #000;
+        border: 4px solid var(--primary);
+        border-radius: 15px;
+        margin: 30px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #FFF;
+        font-weight: bold;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    /* CTA BUTTON */
+    .cta-btn {
+        background: linear-gradient(to bottom, #FFEA00, #FF9D00);
+        color: var(--dark);
+        font-size: 2rem;
+        padding: 20px 40px;
+        border: none;
+        border-radius: 60px;
+        cursor: pointer;
+        text-transform: uppercase;
+        box-shadow: 0 10px 30px rgba(255, 214, 0, 0.4);
+        transition: transform 0.2s;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 900;
+        animation: pulse 2s infinite;
+        border: 2px solid #FFF;
+    }
+
+    /* PURCHASE CARD */
+    .purchase-section {
+        padding: 50px 0;
+        text-align: center;
+    }
+    .purchase-card {
+        background: #111;
+        border: 4px solid var(--primary);
+        border-radius: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px 30px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+    }
+    .purchase-badge {
+        background: #FF0000;
+        color: #FFF;
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .purchase-product {
+        color: #FFF;
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+        letter-spacing: 1px;
+    }
+    .purchase-title {
+        color: var(--primary);
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+    }
+    .purchase-price {
+        color: #FFF;
+        font-size: 4.5rem;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        margin: 10px 0;
+        line-height: 1;
+    }
+    .purchase-benefits {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        text-align: left;
+        margin: 30px 0;
+        color: #FFF;
+        font-size: 1.1rem;
+    }
+    .purchase-benefit-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .benefit-check {
+        color: #00B85C;
+        font-weight: 900;
+        font-size: 1.2rem;
+    }
+    .purchase-footer {
+        margin-top: 20px;
+        color: #AAA;
+        font-size: 0.95rem;
+    }
+    .payment-icons {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        color: #FFF;
+        font-weight: bold;
+    }
+    @media(max-width: 480px) {
+        .purchase-benefits {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* GUARANTEE SECTION */
+    .guarantee-section {
+        background: linear-gradient(180deg, #CC0000, #660000);
+        color: #FFFFFF;
+        padding: 60px 0;
+        text-align: center;
+        border-top: 5px solid var(--primary);
+        border-bottom: 5px solid var(--primary);
+    }
+    .guarantee-section h2 {
+        color: #FFFFFF;
+        font-size: 3rem;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .guarantee-section p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .guarantee-badge {
+        width: 280px;
+        display: block;
+        margin: 0 auto;
+        filter: drop-shadow(0 25px 25px rgba(0,0,0,0.8));
+        transition: transform 0.3s;
+    }
+    .guarantee-badge:hover {
+        transform: scale(1.05);
+    }
+    .cta-btn:hover { transform: translateY(-5px) scale(1.05); }
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 214, 0, 0.7); }
+        70% { box-shadow: 0 0 0 20px rgba(255, 214, 0, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 214, 0, 0); }
+    }
+    .cta-subtext {
+        display: block;
+        font-size: 1rem;
+        margin-top: 10px;
+        color: var(--text);
+        font-weight: 700;
+    }
+
+    /* PRICING */
+    .pricing-box { margin-bottom: 30px; }
+    .price-old { text-decoration: line-through; color: #A0AEC0; font-size: 1.5rem; font-weight: 700; display: block;}
+    .price-new { color: var(--green); font-size: 6rem; line-height: 1; display: block; text-shadow: 0 4px 15px rgba(0, 179, 65, 0.3); margin: 10px 0;}
+    .price-pix { font-size: 2rem; color: var(--primary); text-transform: uppercase; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+
+    /* CHECKLIST SECTION */
+    .checklist-section {
+        background-color: #0A1128;
+        padding: 60px 0;
+        border-top: 2px solid var(--primary);
+        border-bottom: 2px solid var(--primary);
+        box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+    }
+    .section-title {
+        font-size: 3.5rem;
+        color: #FFFFFF;
+        margin-bottom: 10px;
+    }
+    .checklist-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+    .check-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: rgba(255,255,255,0.05);
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-left: 5px solid var(--green);
+    }
+    .check-icon {
+        background: var(--green);
+        color: white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        flex-shrink: 0;
+    }
+
+    /* CAROUSEL INFINITO */
+    .carousel-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        width: 100%;
+        margin-top: 40px;
+        padding: 20px 0;
+        position: relative;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE */
+        cursor: grab;
+    }
+    .carousel-wrapper::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+    .carousel-wrapper:active {
+        cursor: grabbing;
+    }
+    .carousel-track {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    .carousel-item {
+        display: inline-block;
+        width: 220px;
+        height: 320px;
+        margin: 0 15px;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        border: 3px solid var(--primary);
+        transition: transform 0.3s;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+    .carousel-item:hover {
+        transform: scale(1.05);
+    }
+
+    /* BADGES SECTION */
+    .badges-section {
+        padding: 40px 0;
+        background: var(--dark);
+    }
+    .badges-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        text-align: center;
+    }
+    .badge-card {
+        background: rgba(19, 32, 96, 0.5);
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(255,214,0,0.2);
+    }
+    .badge-icon { font-size: 3rem; margin-bottom: 10px; display: block; }
+    .badge-title { font-weight: 900; font-size: 1.2rem; color: var(--primary); text-transform: uppercase;}
+    .badge-desc { font-size: 0.9rem; color: var(--text); }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+        padding: 60px 0;
+        background: #080C24;
+    }
+    .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+    .testi-card {
+        background: #132060;
+        padding: 25px;
+        border-radius: 15px;
+        border-bottom: 4px solid var(--primary);
+    }
+    .testi-stars { color: var(--primary); font-size: 1.2rem; margin-bottom: 10px; }
+    .testi-text { font-style: italic; margin-bottom: 15px; line-height: 1.5; }
+    .testi-author { font-weight: 900; color: var(--primary); }
+
+    /* GUARANTEE */
+    .guarantee-section {
+        padding: 60px 0;
+        background: linear-gradient(135deg, var(--secondary), #8A0000);
+        text-align: center;
+        border-top: 5px solid var(--primary);
+        border-bottom: 5px solid var(--primary);
+    }
+    .guarantee-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .guarantee-seal { font-size: 6rem; line-height: 1; }
+    .guarantee-text { text-align: left; }
+    .guarantee-text h2 { font-size: 3rem; margin: 0 0 10px 0; color: var(--primary); }
+    .guarantee-text p { font-size: 1.2rem; line-height: 1.5; margin: 0; }
+
+    /* FAQ */
+    .faq-section {
+        padding: 60px 0;
+        background: var(--dark);
+    }
+    .faq-item {
+        background: #132060;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .faq-question {
+        padding: 20px;
+        font-weight: 900;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        color: var(--primary);
+    }
+    .faq-answer {
+        padding: 0 20px 20px 20px;
+        color: var(--text);
+        line-height: 1.6;
+        display: none;
+    }
+    .faq-item.active .faq-answer { display: block; }
+    .faq-item.active .faq-question::after { content: "−"; }
+    .faq-question::after { content: "+"; font-size: 1.5rem; }
+
+    /* FOOTER */
+    footer {
+        background: #030510;
+        padding: 30px;
+        text-align: center;
+        color: #64748B;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .hero-section { padding: 19px 10px; }
+        .hero-headline { font-size: 2.5rem; margin-bottom: 9px; }
+        .hero-subheadline { margin-bottom: 14px; font-size: 0.95rem; }
+        .carousel-wrapper { margin: 10px 0 15px 0; padding: 0; }
+        .carousel-item { width: 130px; height: 180px; margin: 0 8px; }
+        .price-new { font-size: 4rem; }
+        .checklist-grid { grid-template-columns: 1fr; }
+        .badges-grid { grid-template-columns: 1fr; }
+        .guarantee-content { flex-direction: column; text-align: center; gap: 20px; }
+        .guarantee-text { text-align: center; }
+        .cta-btn { font-size: 1.6rem; padding: 15px 20px; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .section-title { font-size: 2rem; padding: 10px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TIMER NO TOPO -->
+  <div id="top-timer-bar">
+    ⏳ Oferta encerra em: <span id="timer-display">15:00</span>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-move">
+      <span class="ticker-item">12.000+ GIBIS • TURMA DA MÔNICA • ACESSO VITALÍCIO • DOWNLOAD IMEDIATO • GARANTIA 30 DIAS • R$12,90 NO PIX</span>
+      <span class="ticker-item">12.000+ GIBIS • TURMA DA MÔNICA • ACESSO VITALÍCIO • DOWNLOAD IMEDIATO • GARANTIA 30 DIAS • R$12,90 NO PIX</span>
+      <span class="ticker-item">12.000+ GIBIS • TURMA DA MÔNICA • ACESSO VITALÍCIO • DOWNLOAD IMEDIATO • GARANTIA 30 DIAS • R$12,90 NO PIX</span>
+      <span class="ticker-item">12.000+ GIBIS • TURMA DA MÔNICA • ACESSO VITALÍCIO • DOWNLOAD IMEDIATO • GARANTIA 30 DIAS • R$12,90 NO PIX</span>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container">
+
+      <h1 class="hero-headline bangers">
+        A MAIOR COLEÇÃO DIGITAL DE <br>
+        <span class="highlight">GIBIS DA TURMA DA MÔNICA</span>
+      </h1>
+      
+      <p class="hero-subheadline">
+        12.000 gibis no seu celular do clássico ao moderno
+      </p>
+
+      <!-- CARROSSEL INFINITO COMO "IMAGEM" -->
+      <div class="carousel-wrapper">
+        <div class="carousel-track">
+          <!-- Bloco 1 (Original) -->
+          <img src="Turma da mônica retrato.jpeg" class="carousel-item" alt="Turma da Mônica">
+          <img src="download (81).jpeg" class="carousel-item" alt="Mônica">
+          <img src="download (82).jpeg" class="carousel-item" alt="Mônica">
+          <img src="download (83).jpeg" class="carousel-item" alt="Cebolinha">
+          <img src="GCD __ Cover __ Magali %2392.jpeg" class="carousel-item" alt="Magali">
+          <img src="QUADRINHOS QUADRADOS.jpeg" class="carousel-item" alt="Mônica 46">
+          <img src="𝘔ô𝘯𝘪𝘤𝘢 %23188 (2002).jpeg" class="carousel-item" alt="Mônica 188">
+          <img src="download (84).jpeg" class="carousel-item" alt="Mônica">
+          <img src="download (85).jpeg" class="carousel-item" alt="Mônica">
+          <img src="Gibis históricos da Turma da Mônica com acesso gratuito no app Banca da Mônica!.jpeg" class="carousel-item" alt="Banca">
+          <img src="51vsKjqqdSL._SY445_SX342_ML2_.jpg" class="carousel-item" alt="Mônica">
+          <img src="GCD __ Cover __ Almanaque da Mônica %2314.jpeg" class="carousel-item" alt="Almanaque">
+          <img src="GCD __ Cover __ Cebolinha %2344.jpeg" class="carousel-item" alt="Cebolinha">
+          <img src="GCD __ Cover __ Magali %2353.jpeg" class="carousel-item" alt="Magali">
+          <!-- Bloco 2 (Clone para o loop infinito perfeito) -->
+          <img src="Turma da mônica retrato.jpeg" class="carousel-item" alt="Turma da Mônica">
+          <img src="download (81).jpeg" class="carousel-item" alt="Mônica">
+          <img src="download (82).jpeg" class="carousel-item" alt="Mônica">
+          <img src="download (83).jpeg" class="carousel-item" alt="Cebolinha">
+          <img src="GCD __ Cover __ Magali %2392.jpeg" class="carousel-item" alt="Magali">
+          <img src="QUADRINHOS QUADRADOS.jpeg" class="carousel-item" alt="Mônica 46">
+          <img src="𝘔ô𝘯𝘪𝘤𝘢 %23188 (2002).jpeg" class="carousel-item" alt="Mônica 188">
+          <img src="download (84).jpeg" class="carousel-item" alt="Mônica">
+          <img src="download (85).jpeg" class="carousel-item" alt="Mônica">
+          <img src="Gibis históricos da Turma da Mônica com acesso gratuito no app Banca da Mônica!.jpeg" class="carousel-item" alt="Banca">
+          <img src="51vsKjqqdSL._SY445_SX342_ML2_.jpg" class="carousel-item" alt="Mônica">
+          <img src="GCD __ Cover __ Almanaque da Mônica %2314.jpeg" class="carousel-item" alt="Almanaque">
+          <img src="GCD __ Cover __ Cebolinha %2344.jpeg" class="carousel-item" alt="Cebolinha">
+          <img src="GCD __ Cover __ Magali %2353.jpeg" class="carousel-item" alt="Magali">
+        </div>
+      </div>
+
+      <div style="color: var(--green); font-size: 1.1rem; font-weight: bold; margin-bottom: 19px; text-transform: uppercase;">
+        apenas R$ 12,90 no Pix
+      </div>
+      
+      <a href="#checkout" class="cta-btn bangers">
+        ⚡ LIBERAR MEU ACESSO AGORA!
+      </a>
+      <span class="cta-subtext">Acesso imediato após o pagamento! Pagamento 100% Seguro.</span>
+    </div>
+  </section>
+
+  <!-- O QUE VOCÊ VAI RECEBER -->
+  <section class="checklist-section">
+    <div class="container text-center">
+      <h2 class="section-title bangers">O QUE VOCÊ VAI RECEBER:</h2>
+      <h3 class="bangers" style="color: var(--primary); font-size: 2.2rem; margin-top: 0; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">COLEÇÃO COMPLETA DESDE 1970</h3>
+      
+      <!-- VSL PLACEHOLDER -->
+      <div class="vsl-placeholder">
+        <span style="font-size: 4rem; color: var(--primary);">▶</span>
+        <span style="font-size: 1.2rem; margin-top: 15px; font-family: 'Bangers', cursive; letter-spacing: 1px;">APRESENTAÇÃO EM VÍDEO</span>
+      </div>
+      
+      <div style="margin-top: 40px;">
+        <a href="#checkout" class="cta-btn bangers">⚡ QUERO TUDO ISSO POR R$ 12,90!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMATOS E ACESSO -->
+  <section class="badges-section">
+    <div class="container">
+      <div class="badges-grid">
+        <div class="badge-card">
+          <span class="badge-icon">📄</span>
+          <div class="badge-title">Formato PDF</div>
+          <div class="badge-desc">Leve, Prático e Organizado</div>
+        </div>
+        <div class="badge-card">
+          <span class="badge-icon">📱</span>
+          <div class="badge-title">Funciona em Tudo</div>
+          <div class="badge-desc">Celular, Tablet e Computador</div>
+        </div>
+        <div class="badge-card">
+          <span class="badge-icon">☁️</span>
+          <div class="badge-title">Download Imediato</div>
+          <div class="badge-desc">Logo após a confirmação</div>
+        </div>
+        <div class="badge-card">
+          <span class="badge-icon">✉️</span>
+          <div class="badge-title">Envio via E-mail</div>
+          <div class="badge-desc">Chega em 1 minuto</div>
+        </div>
+        <div class="badge-card">
+          <span class="badge-icon">💬</span>
+          <div class="badge-title">Envio via WhatsApp</div>
+          <div class="badge-desc">Acesso na palma da mão</div>
+        </div>
+        <div class="badge-card">
+          <span class="badge-icon">♾️</span>
+          <div class="badge-title">Acesso Vitalício</div>
+          <div class="badge-desc">Pague uma vez, tenha pra sempre</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="container text-center">
+      <h2 class="bangers" style="font-size: 3rem; color: var(--primary);">O QUE DIZEM NOSSOS COLECIONADORES</h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"Gente, que nostalgia maravilhosa! Comprei pra ler no tablet e a qualidade dos PDFs é incrível. Meus filhos estão amando ler as mesmas histórias que eu lia na idade deles."</div>
+          <div class="testi-author">- Marcos Paulo, 38 anos</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"Vale cada centavo dos 12,90. Chegou no meu e-mail na mesma hora. Já baixei uns 200 gibis da década de 80 e 90 que eu tinha perdido. Sensacional!"</div>
+          <div class="testi-author">- Juliana Mendes, 41 anos</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"Estava com medo de ser golpe, mas chegou direitinho pelo WhatsApp. Organizado por pastas, muito fácil de achar os gibis antigos do Cascão que eu adorava."</div>
+          <div class="testi-author">- Roberto Silva, 35 anos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PURCHASE CARD -->
+  <section class="purchase-section" id="checkout">
+    <div class="container">
+      <div class="purchase-card">
+        <div class="purchase-badge">🔥 54% OFF</div>
+        <div class="purchase-product bangers">COLEÇÃO HISTÓRICA COMPLETA</div>
+        <div class="purchase-price bangers">R$ 12,90</div>
+        
+        <div class="purchase-benefits">
+          <div class="purchase-benefit-item"><span class="benefit-check">✓</span> 12.000 gibis inclusos</div>
+          <div class="purchase-benefit-item"><span class="benefit-check">✓</span> Acesso vitalício</div>
+          <div class="purchase-benefit-item"><span class="benefit-check">✓</span> Download imediato</div>
+          <div class="purchase-benefit-item"><span class="benefit-check">✓</span> Garantia 30 dias</div>
+        </div>
+
+        <a href="#checkout" class="cta-btn bangers" style="font-size: 1.5rem; padding: 15px 30px; width: 100%; box-sizing: border-box;">⚡ QUERO ACESSAR AGORA!</a>
+        
+        <div class="purchase-footer">
+          <div>🔒 Compra segura</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE SECTION -->
+  <section class="guarantee-section" id="garantia">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <img src="./1fedca32a35edb39d1d6f8b613aab9a5-removebg-preview (1).png" alt="Selo de Garantia 30 Dias Ouro" class="guarantee-badge">
+      <div style="text-align: center; max-width: 700px;">
+        <h2 class="bangers">GARANTIA DE 30 DIAS</h2>
+        <p>Temos total confiança na qualidade do nosso acervo. Se por qualquer motivo você não gostar dos gibis, basta enviar um e-mail em até 30 dias e devolveremos 100% do seu dinheiro, sem perguntas!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="bangers text-center" style="font-size: 3rem; margin-bottom: 40px; color: var(--primary);">PERGUNTAS FREQUENTES</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">Como vou receber o acervo?</div>
+        <div class="faq-answer">Imediatamente após a confirmação do pagamento via PIX, você receberá um e-mail e uma mensagem no WhatsApp com o link de acesso exclusivo para baixar ou ler online todos os gibis.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">Funciona no celular?</div>
+        <div class="faq-answer">Sim! Os gibis estão em formato PDF universal. Você pode ler facilmente em qualquer celular (Android ou iPhone), tablet, computador ou até mesmo imprimir.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">Tem mensalidade?</div>
+        <div class="faq-answer">Não! O valor de R$ 12,90 é taxa única. Você paga apenas uma vez e tem acesso vitalício (para sempre) a todo o acervo.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">E se eu não gostar?</div>
+        <div class="faq-answer">Você tem Garantia Incondicional de 30 dias. Se não ficar satisfeito, basta nos mandar um e-mail que devolvemos todo o seu dinheiro.</div>
+      </div>
+      
+      <div class="text-center" style="margin-top: 50px;">
+        <a href="#checkout" class="cta-btn bangers">⚡ SIM! QUERO GARANTIR MEU ACESSO!</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <img src="WhatsApp_Image_2026-06-10_at_00.49.20-removebg-preview.png" alt="Baú dos Gibis Oficial" class="footer-logo">
+      <p>Baú dos Gibis Oficial © 2026 - Todos os direitos reservados.</p>
+      <p>Este site não faz parte e não tem afiliação com o Facebook, Google ou Mauricio de Sousa Produções.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Timer Regressivo de 15 Minutos
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = 0;
+            }
+        }, 1000);
+    }
+    window.onload = function () {
+        var fifteenMinutes = 60 * 15,
+            display = document.querySelector('#timer-display');
+        startTimer(fifteenMinutes, display);
+    };
+
+    // Carrossel com Arraste (Drag) e Auto-Scroll Constante
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let autoScrollInterval;
+
+    function startAutoScroll() {
+        if(autoScrollInterval) clearInterval(autoScrollInterval);
+        autoScrollInterval = setInterval(() => {
+            if(!isDown && carouselWrapper) {
+                carouselWrapper.scrollLeft += 1;
+                if (carouselWrapper.scrollLeft >= carouselWrapper.scrollWidth / 2) {
+                    carouselWrapper.scrollLeft = 0;
+                }
+            }
+        }, 15); // Velocidade do auto-scroll
+    }
+    startAutoScroll();
+
+    // Mouse Events
+    carouselWrapper.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - carouselWrapper.offsetLeft;
+        scrollLeft = carouselWrapper.scrollLeft;
+        e.preventDefault(); // Previne o navegador de tentar "salvar" ou "arrastar" a imagem nativamente
+    });
+    carouselWrapper.addEventListener('mouseleave', () => { isDown = false; });
+    window.addEventListener('mouseup', () => { isDown = false; }); // Se soltar o clique fora, ele entende
+    carouselWrapper.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carouselWrapper.offsetLeft;
+        const walk = (x - startX) * 2; // Sensibilidade do arrasto
+        carouselWrapper.scrollLeft = scrollLeft - walk;
+        
+        if (carouselWrapper.scrollLeft >= carouselWrapper.scrollWidth / 2) {
+            carouselWrapper.scrollLeft = 0;
+            startX = e.pageX - carouselWrapper.offsetLeft;
+            scrollLeft = carouselWrapper.scrollLeft;
+        } else if (carouselWrapper.scrollLeft <= 0) {
+            carouselWrapper.scrollLeft = carouselWrapper.scrollWidth / 2;
+            startX = e.pageX - carouselWrapper.offsetLeft;
+            scrollLeft = carouselWrapper.scrollLeft;
+        }
+    });
+
+    // Touch Events (Mobile)
+    carouselWrapper.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - carouselWrapper.offsetLeft;
+        scrollLeft = carouselWrapper.scrollLeft;
+    });
+    carouselWrapper.addEventListener('touchend', () => { isDown = false; });
+    carouselWrapper.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - carouselWrapper.offsetLeft;
+        const walk = (x - startX) * 2;
+        carouselWrapper.scrollLeft = scrollLeft - walk;
+
+        if (carouselWrapper.scrollLeft >= carouselWrapper.scrollWidth / 2) {
+            carouselWrapper.scrollLeft = 0;
+            startX = e.touches[0].pageX - carouselWrapper.offsetLeft;
+            scrollLeft = carouselWrapper.scrollLeft;
+        } else if (carouselWrapper.scrollLeft <= 0) {
+            carouselWrapper.scrollLeft = carouselWrapper.scrollWidth / 2;
+            startX = e.touches[0].pageX - carouselWrapper.offsetLeft;
+            scrollLeft = carouselWrapper.scrollLeft;
+        }
+    });
+
+    // Scroll suave via JS para não sujar a URL e manter o F5 no topo
+    document.querySelectorAll('a[href="#checkout"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector('#checkout').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Se o usuário apertar F5 e a URL já estiver com #checkout, removemos e jogamos pro topo
+    if (window.location.hash === '#checkout') {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        setTimeout(() => window.scrollTo(0, 0), 10);
+    }
+  </script>
+</body>
+</html>
