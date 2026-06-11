@@ -451,6 +451,69 @@
     .badge-title { font-weight: 900; font-size: 1.2rem; color: var(--primary); text-transform: uppercase;}
     .badge-desc { font-size: 0.9rem; color: var(--text); }
 
+    /* BONUS SECTION */
+    .bonus-section {
+        padding: 60px 0;
+        background: linear-gradient(to bottom, #06091C, #0A1128);
+    }
+    .bonus-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .bonus-card {
+        background: #111827;
+        padding: 35px 25px;
+        border-radius: 15px;
+        border-top: 5px solid var(--primary);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        text-align: center;
+        transition: transform 0.3s;
+    }
+    .bonus-card:hover { transform: translateY(-10px); }
+    .bonus-label {
+        background: var(--primary);
+        color: var(--dark);
+        font-family: 'Bangers', cursive;
+        font-size: 1.2rem;
+        padding: 5px 20px;
+        border-radius: 20px;
+        display: inline-block;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+    .bonus-title {
+        font-size: 2rem;
+        color: #FFF;
+        margin-bottom: 15px;
+        line-height: 1.1;
+        letter-spacing: 1px;
+    }
+    .bonus-desc {
+        color: #A0AEC0;
+        font-size: 1.05rem;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+    .bonus-price {
+        font-size: 1.2rem;
+        font-weight: 900;
+        background: rgba(0, 179, 65, 0.1);
+        color: var(--green);
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 179, 65, 0.3);
+    }
+    .bonus-price span {
+        text-decoration: line-through;
+        color: #F56565;
+        margin-right: 5px;
+    }
+
     /* TESTIMONIALS */
     .testimonials-section {
         padding: 60px 0;
@@ -693,6 +756,40 @@
     </div>
   </section>
 
+  <!-- BÔNUS EXCLUSIVOS -->
+  <section class="bonus-section">
+    <div class="container">
+      <h2 class="bangers text-center" style="font-size: 3.5rem; color: var(--primary); text-shadow: 0 4px 10px rgba(0,0,0,0.5);">BÔNUS ESPECIAIS INCLUÍDOS</h2>
+      <div class="bonus-grid">
+        
+        <div class="bonus-card">
+          <div class="bonus-label">BÔNUS 01</div>
+          <img src="baf99983e9-removebg-preview.png" alt="Mockup Universo Super-Heróis Clássicos" style="width: 100%; max-width: 250px; margin: 0 auto 15px auto; display: block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));">
+          <div class="bonus-title bangers">Universo Super-Heróis Clássicos</div>
+          <div class="bonus-desc">Diversos gibis e HQs do universo da Marvel & DC com todos os personagens incluídos.</div>
+          <div class="bonus-price"><span>De: R$ 27,90</span> | Grátis Hoje</div>
+        </div>
+
+        <div class="bonus-card">
+          <div class="bonus-label">BÔNUS 02</div>
+          <img src="capamangas-removebg-preview (1).png" alt="Mockup Mangás Clássicos" style="width: 100%; max-width: 250px; margin: 0 auto 15px auto; display: block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); border-radius: 10px;">
+          <div class="bonus-title bangers">10.000 Mangás Clássicos</div>
+          <div class="bonus-desc">Uma coleção épica e gigantesca com os melhores mangás para você ler de onde quiser.</div>
+          <div class="bonus-price"><span>De: R$ 39,90</span> | Grátis Hoje</div>
+        </div>
+
+        <div class="bonus-card">
+          <div class="bonus-label">BÔNUS 03</div>
+          <img src="br-11134207-7r98o-lr3360w3o26la1-removebg-preview.png" alt="Mockup Turma da Mônica Jovem" style="width: 100%; max-width: 250px; margin: 0 auto 15px auto; display: block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); border-radius: 10px;">
+          <div class="bonus-title bangers">Turma da Mônica Jovem Completo</div>
+          <div class="bonus-desc">Acompanhe todas as aventuras da Mônica e sua turma na fase jovem com a coleção completa.</div>
+          <div class="bonus-price"><span>De: R$ 34,90</span> | Grátis Hoje</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- TESTIMONIALS -->
   <section class="testimonials-section">
     <div class="container text-center">
@@ -733,11 +830,16 @@
           
           <div class="purchase-benefits">
             <div class="purchase-benefit-item">✅ 12.000 gibis Turma da Mônica</div>
-            <div class="purchase-benefit-item" style="color: #777;">❌ Coleção Marvel</div>
-            <div class="purchase-benefit-item" style="color: #777;">❌ 10.000 Mangás Clássicos</div>
-            <div class="purchase-benefit-item" style="color: #777;">❌ Turma da Mônica Jovem Completo</div>
             <div class="purchase-benefit-item">✅ Acesso Vitalício</div>
             <div class="purchase-benefit-item">✅ Download Imediato</div>
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px dashed #555; border-radius: 10px; padding: 15px; margin-top: 5px;">
+              <div style="font-weight: 900; color: #777; margin-bottom: 10px; font-size: 0.95rem;">PERDE OS BÔNUS:</div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div class="purchase-benefit-item" style="color: #777;">❌ Universo Marvel e DC</div>
+                <div class="purchase-benefit-item" style="color: #777;">❌ 10.000 Mangás Clássicos</div>
+                <div class="purchase-benefit-item" style="color: #777;">❌ Turma da Mônica Jovem</div>
+              </div>
+            </div>
           </div>
 
           <button onclick="openUpsell()" class="cta-btn bangers" style="font-size: 1.5rem; padding: 15px 10px; width: 100%; box-sizing: border-box; font-family: 'Bangers', cursive;">⚡ QUERO ESSE!</button>
@@ -755,11 +857,16 @@
           
           <div class="purchase-benefits">
             <div class="purchase-benefit-item">✅ 12.000 gibis Turma da Mônica</div>
-            <div class="purchase-benefit-item">✅ 10.000 gibis Marvel Clássica</div>
-            <div class="purchase-benefit-item">✅ 10.000 Mangás Clássicos</div>
-            <div class="purchase-benefit-item">✅ Turma da Mônica Jovem Completo</div>
             <div class="purchase-benefit-item">✅ Acesso Vitalício</div>
             <div class="purchase-benefit-item">✅ Download Imediato</div>
+            <div style="background: rgba(255, 214, 0, 0.1); border: 1px solid var(--primary); border-radius: 10px; padding: 15px; margin-top: 5px; box-shadow: inset 0 0 15px rgba(255,214,0,0.1);">
+              <div style="font-weight: 900; color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">🎁 BÔNUS EXCLUSIVOS:</div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="purchase-benefit-item" style="color: #FFF;">✅ Universo Marvel e DC</div>
+                <div class="purchase-benefit-item" style="color: #FFF;">✅ 10.000 Mangás Clássicos</div>
+                <div class="purchase-benefit-item" style="color: #FFF;">✅ Turma da Mônica Jovem</div>
+              </div>
+            </div>
           </div>
 
           <a href="https://tilimcheckout.com/checkout?p=581b867420efc6d182c9f3e6f926bc4e" class="cta-btn btn-premium bangers" style="font-size: 1.5rem; padding: 15px 10px; width: 100%; box-sizing: border-box;">⚡ QUERO TUDO!</a>
@@ -823,9 +930,14 @@
       
       <div class="purchase-benefits" style="margin: 20px 0;">
         <div class="purchase-benefit-item">✅ 12.000 gibis Turma da Mônica</div>
-        <div class="purchase-benefit-item">✅ 10.000 gibis Marvel Clássica</div>
-        <div class="purchase-benefit-item">✅ 10.000 Mangás Clássicos</div>
-        <div class="purchase-benefit-item">✅ Turma da Mônica Jovem Completo</div>
+        <div style="background: rgba(255, 214, 0, 0.1); border: 1px solid var(--primary); border-radius: 10px; padding: 15px; margin-top: 15px; box-shadow: inset 0 0 15px rgba(255,214,0,0.1);">
+          <div style="font-weight: 900; color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; text-align: left; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">🎁 BÔNUS EXCLUSIVOS:</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="purchase-benefit-item" style="color: #FFF;">✅ Universo Marvel e DC</div>
+            <div class="purchase-benefit-item" style="color: #FFF;">✅ 10.000 Mangás Clássicos</div>
+            <div class="purchase-benefit-item" style="color: #FFF;">✅ Turma da Mônica Jovem</div>
+          </div>
+        </div>
       </div>
 
       <span class="upsell-price-old bangers">DE R$ 24,90</span>
