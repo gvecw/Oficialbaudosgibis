@@ -303,27 +303,23 @@
 
     /* CAROUSEL INFINITO */
     .carousel-wrapper {
-        overflow-x: auto;
-        overflow-y: hidden;
+        overflow: hidden;
         white-space: nowrap;
         width: 100%;
         margin-top: 40px;
         padding: 20px 0;
         position: relative;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE */
-        cursor: grab;
-    }
-    .carousel-wrapper::-webkit-scrollbar {
-        display: none; /* Chrome/Safari */
-    }
-    .carousel-wrapper:active {
-        cursor: grabbing;
     }
     .carousel-track {
         display: inline-flex;
         flex-wrap: nowrap;
         align-items: center;
+        width: max-content;
+        animation: scroll-carousel 40s linear infinite;
+    }
+    @keyframes scroll-carousel {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
     }
     .carousel-item {
         display: inline-block;
@@ -715,76 +711,7 @@
         startTimer(fifteenMinutes, display);
     };
 
-    // Carrossel com Arraste (Drag) e Auto-Scroll Constante
-    const carouselWrapper = document.querySelector('.carousel-wrapper');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    let autoScrollInterval;
-
-    function startAutoScroll() {
-        if(autoScrollInterval) clearInterval(autoScrollInterval);
-        autoScrollInterval = setInterval(() => {
-            if(!isDown && carouselWrapper) {
-                carouselWrapper.scrollLeft += 1;
-                if (carouselWrapper.scrollLeft >= carouselWrapper.scrollWidth / 2) {
-                    carouselWrapper.scrollLeft = 0;
-                }
-            }
-        }, 15); // Velocidade do auto-scroll
-    }
-    startAutoScroll();
-
-    // Mouse Events
-    carouselWrapper.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - carouselWrapper.offsetLeft;
-        scrollLeft = carouselWrapper.scrollLeft;
-        e.preventDefault(); // Previne o navegador de tentar "salvar" ou "arrastar" a imagem nativamente
-    });
-    carouselWrapper.addEventListener('mouseleave', () => { isDown = false; });
-    window.addEventListener('mouseup', () => { isDown = false; }); // Se soltar o clique fora, ele entende
-    carouselWrapper.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - carouselWrapper.offsetLeft;
-        const walk = (x - startX) * 2; // Sensibilidade do arrasto
-        carouselWrapper.scrollLeft = scrollLeft - walk;
-        
-        if (carouselWrapper.scrollLeft >= carouselWrapper.scrollWidth / 2) {
-            carouselWrapper.scrollLeft = 0;
-            startX = e.pageX - carouselWrapper.offsetLeft;
-            scrollLeft = carouselWrapper.scrollLeft;
-        } else if (carouselWrapper.scrollLeft <= 0) {
-            carouselWrapper.scrollLeft = carouselWrapper.scrollWidth / 2;
-            startX = e.pageX - carouselWrapper.offsetLeft;
-            scrollLeft = carouselWrapper.scrollLeft;
-        }
-    });
-
-    // Touch Events (Mobile)
-    carouselWrapper.addEventListener('touchstart', (e) => {
-        isDown = true;
-        startX = e.touches[0].pageX - carouselWrapper.offsetLeft;
-        scrollLeft = carouselWrapper.scrollLeft;
-    });
-    carouselWrapper.addEventListener('touchend', () => { isDown = false; });
-    carouselWrapper.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        const x = e.touches[0].pageX - carouselWrapper.offsetLeft;
-        const walk = (x - startX) * 2;
-        carouselWrapper.scrollLeft = scrollLeft - walk;
-
-        if (carouselWrapper.scrollLeft >= carouselWrapper.scrollWidth / 2) {
-            carouselWrapper.scrollLeft = 0;
-            startX = e.touches[0].pageX - carouselWrapper.offsetLeft;
-            scrollLeft = carouselWrapper.scrollLeft;
-        } else if (carouselWrapper.scrollLeft <= 0) {
-            carouselWrapper.scrollLeft = carouselWrapper.scrollWidth / 2;
-            startX = e.touches[0].pageX - carouselWrapper.offsetLeft;
-            scrollLeft = carouselWrapper.scrollLeft;
-        }
-    });
+    // O carrossel agora é animado 100% via CSS para máxima fluidez (60fps)
 
     // Scroll suave via JS para não sujar a URL e manter o F5 no topo
     document.querySelectorAll('a[href="#checkout"]').forEach(anchor => {
