@@ -121,23 +121,51 @@
         border: 2px solid #FFF;
     }
 
-    /* PURCHASE CARD */
+    /* PURCHASE CARDS */
     .purchase-section {
         padding: 50px 0;
         text-align: center;
     }
+    .purchase-cards-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        justify-content: center;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+        .purchase-cards-wrapper {
+            flex-direction: row;
+            align-items: center;
+            align-items: stretch; /* faz com que fiquem da mesma altura */
+        }
+    }
     .purchase-card {
         background: #111;
-        border: 4px solid var(--primary);
         border-radius: 20px;
-        max-width: 600px;
-        margin: 0 auto;
+        width: 100%;
+        max-width: 450px;
         padding: 40px 30px;
         box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .card-basic {
+        border: 4px solid var(--primary);
+    }
+    .card-premium {
+        border: 4px solid var(--green);
+        z-index: 2;
+    }
+    @media (min-width: 768px) {
+        .card-premium {
+            transform: scale(1.05); /* Destaque no desktop */
+        }
     }
     .purchase-badge {
-        background: #FF0000;
-        color: #FFF;
         display: inline-block;
         padding: 5px 15px;
         border-radius: 20px;
@@ -147,43 +175,53 @@
         text-transform: uppercase;
         letter-spacing: 1px;
     }
-    .purchase-product {
-        color: #FFF;
-        font-size: 1.8rem;
-        margin-bottom: 5px;
-        letter-spacing: 1px;
-    }
+    .badge-basic { background: #FF0000; color: #FFF; }
+    .badge-premium { background: var(--green); color: #FFF; box-shadow: 0 0 15px rgba(0,179,65,0.5); }
+    
     .purchase-title {
-        color: var(--primary);
         font-size: 2.2rem;
         margin-bottom: 10px;
     }
+    .title-basic { color: var(--primary); }
+    .title-premium { color: var(--green); }
+    
     .purchase-price {
         color: #FFF;
-        font-size: 4.5rem;
+        font-size: 4rem; /* Ajustado um pouco para caber 2 lado a lado */
         text-shadow: 0 4px 10px rgba(0,0,0,0.5);
         margin: 10px 0;
         line-height: 1;
     }
     .purchase-benefits {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
         text-align: left;
         margin: 30px 0;
         color: #FFF;
         font-size: 1.1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        flex-grow: 1;
     }
     .purchase-benefit-item {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
     }
-    .benefit-check {
-        color: #00B85C;
-        font-weight: 900;
-        font-size: 1.2rem;
+    
+    .btn-premium {
+        background: linear-gradient(to bottom, #00E676, #00B341);
+        color: #FFF;
+        box-shadow: 0 10px 30px rgba(0, 179, 65, 0.4);
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
+    @keyframes pulse-green {
+        0% { box-shadow: 0 0 0 0 rgba(0, 179, 65, 0.7); }
+        70% { box-shadow: 0 0 0 20px rgba(0, 179, 65, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(0, 179, 65, 0); }
+    }
+    .btn-premium { animation: pulse-green 2s infinite; border: 2px solid #FFF;}
+    .btn-premium:hover { box-shadow: 0 0 0 0 rgba(0, 179, 65, 0.7); }
+    
     .purchase-footer {
         margin-top: 20px;
         color: #AAA;
@@ -195,11 +233,70 @@
         color: #FFF;
         font-weight: bold;
     }
-    @media(max-width: 480px) {
-        .purchase-benefits {
-            grid-template-columns: 1fr;
-        }
+
+    /* UPSELL MODAL */
+    .upsell-overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.85);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        backdrop-filter: blur(5px);
     }
+    .upsell-modal {
+        background: #111;
+        border: 4px solid var(--green);
+        border-radius: 20px;
+        width: 100%;
+        max-width: 500px;
+        padding: 40px 30px;
+        box-shadow: 0 15px 50px rgba(0,179,65,0.4);
+        text-align: center;
+        position: relative;
+        animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes modalSlideIn {
+        from { transform: translateY(50px) scale(0.9); opacity: 0; }
+        to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .upsell-title { color: var(--green); font-size: 2.5rem; margin-top: 0; margin-bottom: 10px; line-height: 1.1; }
+    .upsell-desc { font-size: 1.1rem; color: #FFF; margin-bottom: 20px; }
+    .upsell-price { color: #FFF; font-size: 4rem; text-shadow: 0 4px 10px rgba(0,0,0,0.5); margin: 10px 0; line-height: 1; }
+    .upsell-price-old { text-decoration: line-through; color: #FF0000; font-size: 1.5rem; display: block; margin-bottom: -10px; }
+    
+    .upsell-btn-yes {
+        background: linear-gradient(to bottom, #00E676, #00B341);
+        color: #FFF;
+        font-size: 1.8rem;
+        padding: 20px 10px;
+        width: 100%;
+        border: 2px solid #FFF;
+        border-radius: 60px;
+        cursor: pointer;
+        text-transform: uppercase;
+        box-shadow: 0 10px 30px rgba(0, 179, 65, 0.5);
+        display: inline-block;
+        text-decoration: none;
+        margin-top: 20px;
+        font-weight: 900;
+        animation: pulse-green 2s infinite;
+    }
+    .upsell-btn-no {
+        display: block;
+        margin-top: 20px;
+        color: #777;
+        font-size: 0.85rem;
+        text-decoration: underline;
+        cursor: pointer;
+        background: none;
+        border: none;
+        width: 100%;
+        font-family: 'Nunito', sans-serif;
+    }
+    .upsell-btn-no:hover { color: #AAA; }
 
     /* GUARANTEE SECTION */
     .guarantee-section {
@@ -350,6 +447,7 @@
         border: 1px solid rgba(255,214,0,0.2);
     }
     .badge-icon { font-size: 3rem; margin-bottom: 10px; display: block; }
+    .badge-image { width: 70px; height: auto; margin: 0 auto 10px auto; display: block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
     .badge-title { font-weight: 900; font-size: 1.2rem; color: var(--primary); text-transform: uppercase;}
     .badge-desc { font-size: 0.9rem; color: var(--text); }
 
@@ -370,6 +468,7 @@
         border-radius: 15px;
         border-bottom: 4px solid var(--primary);
     }
+    .testi-avatar { width: 75px; height: 75px; border-radius: 50%; object-fit: cover; margin: 0 auto 15px auto; border: 3px solid var(--primary); display: block; }
     .testi-stars { color: var(--primary); font-size: 1.2rem; margin-bottom: 10px; }
     .testi-text { font-style: italic; margin-bottom: 15px; line-height: 1.5; }
     .testi-author { font-weight: 900; color: var(--primary); }
@@ -447,6 +546,18 @@
         .guarantee-text { text-align: center; }
         .cta-btn { font-size: 1.15rem; padding: 15px 5px; width: 100%; white-space: normal; text-align: center; line-height: 1.2; }
         .section-title { font-size: 2rem; padding: 10px 20px; }
+        
+        /* Ajustes do Modal de Upsell no Mobile */
+        .upsell-overlay { padding: 10px; }
+        .upsell-modal { padding: 25px 15px; max-height: 95vh; overflow-y: auto; }
+        .upsell-title { font-size: 2rem; margin-bottom: 5px; }
+        .upsell-desc { font-size: 0.95rem; margin-bottom: 10px; line-height: 1.3; }
+        .upsell-modal .purchase-benefits { margin: 10px 0; gap: 8px; }
+        .upsell-modal .purchase-benefit-item { font-size: 0.9rem; }
+        .upsell-price-old { font-size: 1.2rem; margin-bottom: -5px; }
+        .upsell-price { font-size: 3rem; margin: 5px 0; }
+        .upsell-btn-yes { font-size: 1.3rem; padding: 15px 10px; margin-top: 15px; }
+        .upsell-btn-no { margin-top: 15px; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -549,7 +660,7 @@
     <div class="container">
       <div class="badges-grid">
         <div class="badge-card">
-          <span class="badge-icon">📄</span>
+          <img src="Pdf_File_Icon_Png__Pdf__Pdf_Logo__Pdf_Icon_PNG_and_Vector_with_Transparent_Background_for_Free_Download-removebg-preview.png" class="badge-image" alt="Ícone PDF">
           <div class="badge-title">Formato PDF</div>
           <div class="badge-desc">Leve, Prático e Organizado</div>
         </div>
@@ -559,22 +670,22 @@
           <div class="badge-desc">Celular, Tablet e Computador</div>
         </div>
         <div class="badge-card">
-          <span class="badge-icon">☁️</span>
+          <img src="download_icon_download_icon_downloading_png-removebg-preview.png" class="badge-image" alt="Ícone Download">
           <div class="badge-title">Download Imediato</div>
           <div class="badge-desc">Logo após a confirmação</div>
         </div>
         <div class="badge-card">
-          <span class="badge-icon">✉️</span>
+          <img src="Download_Gmail_icon_transparent_png__1_-removebg-preview.png" class="badge-image" alt="Ícone E-mail">
           <div class="badge-title">Envio via E-mail</div>
           <div class="badge-desc">Chega em 1 minuto</div>
         </div>
         <div class="badge-card">
-          <span class="badge-icon">💬</span>
+          <img src="Download_Whatsapp_logo_png__Whatsapp_icon_png__Whatsapp_transparent-removebg-preview.png" class="badge-image" alt="Ícone WhatsApp">
           <div class="badge-title">Envio via WhatsApp</div>
           <div class="badge-desc">Acesso na palma da mão</div>
         </div>
         <div class="badge-card">
-          <span class="badge-icon">♾️</span>
+          <img src="Warranty_Verified_Png_Icon__Png_Icon__Png_Warranty__Verified_Png_PNG_and_Vector_with_Transparent_Background_for_Free_Download-removebg-preview.png" class="badge-image" alt="Ícone Acesso Vitalício">
           <div class="badge-title">Acesso Vitalício</div>
           <div class="badge-desc">Pague uma vez, tenha pra sempre</div>
         </div>
@@ -588,16 +699,19 @@
       <h2 class="bangers" style="font-size: 3rem; color: var(--primary);">O QUE DIZEM NOSSOS COLECIONADORES</h2>
       <div class="testi-grid">
         <div class="testi-card">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marcos" class="testi-avatar">
           <div class="testi-stars">★★★★★</div>
           <div class="testi-text">"Gente, que nostalgia maravilhosa! Comprei pra ler no tablet e a qualidade dos PDFs é incrível. Meus filhos estão amando ler as mesmas histórias que eu lia na idade deles."</div>
           <div class="testi-author">- Marcos Paulo, 38 anos</div>
         </div>
         <div class="testi-card">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Juliana" class="testi-avatar">
           <div class="testi-stars">★★★★★</div>
           <div class="testi-text">"Vale cada centavo dos 12,90. Chegou no meu e-mail na mesma hora. Já baixei uns 200 gibis da década de 80 e 90 que eu tinha perdido. Sensacional!"</div>
           <div class="testi-author">- Juliana Mendes, 41 anos</div>
         </div>
         <div class="testi-card">
+          <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Roberto" class="testi-avatar">
           <div class="testi-stars">★★★★★</div>
           <div class="testi-text">"Estava com medo de ser golpe, mas chegou direitinho pelo WhatsApp. Organizado por pastas, muito fácil de achar os gibis antigos do Cascão que eu adorava."</div>
           <div class="testi-author">- Roberto Silva, 35 anos</div>
@@ -606,26 +720,55 @@
     </div>
   </section>
 
-  <!-- PURCHASE CARD -->
+  <!-- PURCHASE CARDS -->
   <section class="purchase-section" id="checkout">
     <div class="container">
-      <div class="purchase-card">
-        <div class="purchase-badge">🔥 54% OFF</div>
-        <div class="purchase-product bangers">COLEÇÃO HISTÓRICA COMPLETA</div>
-        <div class="purchase-price bangers">R$ 12,90</div>
+      <div class="purchase-cards-wrapper">
         
-        <div class="purchase-benefits">
-          <div class="purchase-benefit-item"><span class="benefit-check">✓</span> 12.000 gibis inclusos</div>
-          <div class="purchase-benefit-item"><span class="benefit-check">✓</span> Acesso vitalício</div>
-          <div class="purchase-benefit-item"><span class="benefit-check">✓</span> Download imediato</div>
-          <div class="purchase-benefit-item"><span class="benefit-check">✓</span> Garantia 30 dias</div>
+        <!-- CARD 1 -->
+        <div class="purchase-card card-basic">
+          <div><div class="purchase-badge badge-basic">MAIS POPULAR</div></div>
+          <div class="purchase-title title-basic bangers">BAÚ DOS GIBIS</div>
+          <div class="purchase-price bangers">R$ 12,90</div>
+          
+          <div class="purchase-benefits">
+            <div class="purchase-benefit-item">✅ 12.000 gibis Turma da Mônica</div>
+            <div class="purchase-benefit-item" style="color: #777;">❌ Coleção Marvel</div>
+            <div class="purchase-benefit-item" style="color: #777;">❌ 10.000 Mangás Clássicos</div>
+            <div class="purchase-benefit-item" style="color: #777;">❌ Turma da Mônica Jovem Completo</div>
+            <div class="purchase-benefit-item">✅ Acesso Vitalício</div>
+            <div class="purchase-benefit-item">✅ Download Imediato</div>
+          </div>
+
+          <button onclick="openUpsell()" class="cta-btn bangers" style="font-size: 1.5rem; padding: 15px 10px; width: 100%; box-sizing: border-box; font-family: 'Bangers', cursive;">⚡ QUERO ESSE!</button>
+          
+          <div class="purchase-footer">
+            <div>🔒 Compra segura</div>
+          </div>
         </div>
 
-        <a href="#checkout" class="cta-btn bangers" style="font-size: 1.5rem; padding: 15px 30px; width: 100%; box-sizing: border-box;">⚡ QUERO ACESSAR AGORA!</a>
-        
-        <div class="purchase-footer">
-          <div>🔒 Compra segura</div>
+        <!-- CARD 2 -->
+        <div class="purchase-card card-premium">
+          <div><div class="purchase-badge badge-premium">MELHOR VALOR</div></div>
+          <div class="purchase-title title-premium bangers">BAÚ COMPLETO</div>
+          <div class="purchase-price bangers">R$ 27,90</div>
+          
+          <div class="purchase-benefits">
+            <div class="purchase-benefit-item">✅ 12.000 gibis Turma da Mônica</div>
+            <div class="purchase-benefit-item">✅ 10.000 gibis Marvel Clássica</div>
+            <div class="purchase-benefit-item">✅ 10.000 Mangás Clássicos</div>
+            <div class="purchase-benefit-item">✅ Turma da Mônica Jovem Completo</div>
+            <div class="purchase-benefit-item">✅ Acesso Vitalício</div>
+            <div class="purchase-benefit-item">✅ Download Imediato</div>
+          </div>
+
+          <a href="#checkout" class="cta-btn btn-premium bangers" style="font-size: 1.5rem; padding: 15px 10px; width: 100%; box-sizing: border-box;">⚡ QUERO TUDO!</a>
+          
+          <div class="purchase-footer">
+            <div>🔒 Compra segura</div>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -672,6 +815,27 @@
     </div>
   </section>
 
+  <!-- UPSELL MODAL -->
+  <div id="upsellModal" class="upsell-overlay">
+    <div class="upsell-modal">
+      <h2 class="upsell-title bangers">ESPERE! OFERTA EXCLUSIVA!</h2>
+      <p class="upsell-desc">Leve o <strong>BAÚ COMPLETO</strong> com todos os bônus por uma pechincha!</p>
+      
+      <div class="purchase-benefits" style="margin: 20px 0;">
+        <div class="purchase-benefit-item">✅ 12.000 gibis Turma da Mônica</div>
+        <div class="purchase-benefit-item">✅ 10.000 gibis Marvel Clássica</div>
+        <div class="purchase-benefit-item">✅ 10.000 Mangás Clássicos</div>
+        <div class="purchase-benefit-item">✅ Turma da Mônica Jovem Completo</div>
+      </div>
+
+      <span class="upsell-price-old bangers">DE R$ 27,90</span>
+      <div class="upsell-price bangers">POR R$ 19,90</div>
+      
+      <a href="#checkout-upsell" class="upsell-btn-yes bangers">⚡ RESGATAR PROMOÇÃO</a>
+      <button onclick="closeUpsell()" class="upsell-btn-no">Não, quero o de 12,90</button>
+    </div>
+  </div>
+
   <footer>
     <div class="container">
       <img src="WhatsApp_Image_2026-06-10_at_00.49.20-removebg-preview.png" alt="Baú dos Gibis Oficial" class="footer-logo">
@@ -703,6 +867,16 @@
             display = document.querySelector('#timer-display');
         startTimer(fifteenMinutes, display);
     };
+
+    // Upsell Modal Logic
+    function openUpsell() {
+        document.getElementById('upsellModal').style.display = 'flex';
+    }
+    function closeUpsell() {
+        document.getElementById('upsellModal').style.display = 'none';
+        // Placeholder redirection for checkout logic
+        window.location.href = "#checkout-1290";
+    }
 
     // O carrossel agora é animado 100% via CSS para máxima fluidez (60fps)
 
